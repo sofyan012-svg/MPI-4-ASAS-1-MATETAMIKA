@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Petualangan Matematika Bersama Hoo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--b1:#fff3b0;--b2:#c6f1ff;--card:#fff;--tx:#23305a;--pr:#6c5ce7;--ok:#00b894;--no:#ff9f43;--pk:#ff6b9d;--bd:#e2e6ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--b1:#2b2563;--b2:#12365a;--card:#1f2447;--tx:#f1f3ff;--bd:#38407a}}
+:root[data-theme="dark"]{--b1:#2b2563;--b2:#12365a;--card:#1f2447;--tx:#f1f3ff;--bd:#38407a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;font-family:'Fredoka',system-ui,sans-serif;color:var(--tx);background:linear-gradient(135deg,var(--b1),var(--b2)) fixed}
+.fl{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.fl b{position:absolute;font-size:36px;opacity:.45;animation:fy 8s ease-in-out infinite}
+@keyframes fy{50%{transform:translateY(-26px) rotate(12deg)}}
+.w{position:relative;max-width:700px;margin:0 auto;padding:14px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-weight:700}
+.bar{flex:1;height:14px;background:var(--bd);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pk),var(--pr));border-radius:9px;transition:width .5s}
+.sn{border:0;background:var(--card);border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer}
+.card{background:var(--card);border-radius:28px;padding:20px;box-shadow:0 9px 0 rgba(108,92,231,.2),0 16px 30px rgba(0,0,0,.1);animation:pop .4s}
+@keyframes pop{from{transform:scale(.93) translateY(14px);opacity:0}}
+.em{font-size:66px;text-align:center;animation:bn 2s ease-in-out infinite}
+@keyframes bn{50%{transform:translateY(-8px) scale(1.06)}}
+.tag{display:inline-block;background:var(--pr);color:#fff;border-radius:20px;padding:3px 14px;font-size:15px}
+.q{font-size:20px;line-height:1.55;margin:8px 0}
+.opts{display:grid;gap:10px;margin-top:8px}
+button{font-family:inherit}
+.o{font-size:19px;font-weight:600;border:3px solid var(--bd);background:var(--card);color:var(--tx);border-radius:18px;padding:12px 16px;cursor:pointer;text-align:left;transition:transform .15s,border-color .15s}
+.o:hover{transform:scale(1.02);border-color:var(--pr)}
+.o.sel{border-color:var(--pr);background:rgba(108,92,231,.15)}
+.o.ok{background:var(--ok);border-color:var(--ok);color:#fff;animation:pu .5s}
+.o.no{background:var(--no);border-color:var(--no);color:#fff;animation:sw .5s}
+@keyframes pu{50%{transform:scale(1.07)}}
+@keyframes sw{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.go{margin-top:14px;width:100%;font-size:20px;font-weight:700;border:0;border-radius:20px;padding:14px;color:#fff;background:linear-gradient(135deg,var(--pr),var(--pk));cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.go:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.in{font:inherit;font-size:19px;width:100%;padding:11px 14px;border:3px solid var(--bd);border-radius:16px;background:var(--card);color:var(--tx);margin:4px 0 8px}
+.in:focus{outline:none;border-color:var(--pr)}
+.fb{margin-top:14px;padding:14px;border-radius:20px;display:flex;gap:12px;align-items:center;animation:pop .4s}
+.fb.g{background:rgba(0,184,148,.2)}.fb.b{background:rgba(255,159,67,.22)}
+.fb .m{font-size:44px;animation:bn 1s infinite}
+.fr i{display:inline-block;width:46px;height:46px;border:3px solid var(--tx);border-radius:9px;margin:3px}
+.fr i.on{background:var(--pk)}
+.t{border-collapse:collapse;margin:8px auto}.t td,.t th{border:2px solid var(--bd);padding:6px 14px}
+.cf{position:fixed;top:-40px;font-size:26px;z-index:9;pointer-events:none;animation:cf 1.9s ease-in forwards}
+@keyframes cf{to{transform:translateY(115vh) rotate(540deg)}}
+.c{text-align:center}
+.big{font-size:110px;animation:bn 1.8s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="fl"><b style="left:6%;top:12%">☁️</b><b style="left:84%;top:18%;animation-delay:1s">⭐</b><b style="left:12%;top:70%;animation-delay:2s">🌈</b><b style="left:80%;top:75%;animation-delay:3s">🎈</b><b style="left:48%;top:4%;animation-delay:4s">✨</b></div>
+<div class="w" id="app"></div>
+<script>
+const J=["35%","7/10","&gt;","700","2/4","70"];
+const P=(q,o,a,e)=>({t:'p',q,o,a,e}),Bs=(q,a,e)=>({t:'b',q,a,e}),Jd=(q,a,e)=>({t:'j',q,o:J,a,e}),M=(q,o,a,e)=>({t:'m',q,o,a,e}),F=(q,f,e)=>({t:'f',q,f,e});
+const Q=[
+P("Lima ribu tiga ratus dua puluh tujuh ditulis dengan angka …",["5.237","5.327","5.372","3.527"],1,"🔢"),
+P("4.000 + 600 + 50 + 3 = …",["4.563","4.653","4.635","4.356"],1,"🧩"),
+P("345 + 428 = …",["763","773","783","873"],1,"➕"),
+P("8 × 7 = …",["54","56","63","64"],1,"✖️"),
+P("Ibu menata 12 apel ke dalam beberapa kotak sama banyak tanpa sisa. Banyak apel tiap kotak yang mungkin adalah …",["5","6","8","9"],1,"🍎"),
+P("Perhatikan gambar cokelat ini! Pecahan untuk bagian yang berwarna adalah …<div class=fr><i class=on></i><i></i><i></i><i></i></div>",["1/3","1/4","3/4","1/5"],1,"🍫"),
+P("Bentuk paling sederhana dari 6/8 adalah …",["1/2","2/3","3/4","4/6"],2,"✂️"),
+P("Tanda yang tepat untuk 3/8 … 5/8 adalah …",["&gt;","&lt;","=","+"],1,"⚖️"),
+P("Dito punya 50 kelereng. Ia memberikan beberapa kelereng kepada adiknya, sisanya 35. Jika yang diberikan ☐, kalimat matematikanya …",["50 + ☐ = 35","50 − ☐ = 35","☐ − 50 = 35","35 − 50 = ☐"],1,"🔵"),
+P("Perhatikan pola bintang!<br>1: ★★★★★★★★★<br>2: ★★★★★★★<br>3: ★★★★★<br>Banyak bintang pada gambar ke-4 adalah …",["2","3","4","6"],1,"⭐"),
+Bs("Bilangan 7.040 dibaca tujuh ribu empat puluh.",true,"📖"),
+Bs("Bilangan 4.508; 4.058; 4.805; 4.085 jika diurutkan dari yang terkecil menjadi 4.058; 4.085; 4.805; 4.508.",false,"📊"),
+Bs("Toko memiliki 750 pensil. Terjual 285 pensil, sehingga sisanya 475.",false,"✏️"),
+Bs("Pola bilangan: 12 → 19 → 26 → 33 → …<br>Dua bilangan berikutnya adalah 40 dan 47.",true,"🔁"),
+Bs("Pola bilangan: 25 → 35 → 45 → 55 → …<br>Aturan pola tersebut adalah ditambah 5.",false,"🪜"),
+Jd("Tanda yang tepat: <b>6.215 … 6.125</b>",2,"🔍"),
+Jd("Nilai angka 7 pada bilangan <b>4.723</b> adalah …",3,"🏠"),
+Jd("Pecahan yang senilai dengan <b>1/2</b> adalah …",4,"🍕"),
+Jd("Pecahan biasa dari <b>0,7</b> adalah …",1,"🔄"),
+Jd("Pecahan <b>35/100</b> sama dengan …",0,"💯"),
+M("Perhatikan tinggi gunung!<table class=t><tr><th>Gunung<th>Tinggi (m)<tr><td>Semeru<td>3.676<tr><td>Arjuno<td>3.339<tr><td>Bromo<td>2.329<tr><td>Penanggungan<td>1.653</table>Pilih <b>2</b> pernyataan yang benar!",["Gunung Semeru lebih tinggi daripada Gunung Arjuno","Gunung Bromo lebih tinggi daripada Gunung Arjuno","Gunung Penanggungan paling rendah","Gunung Penanggungan lebih tinggi daripada Gunung Bromo"],[0,2],"🌋"),
+M("Perpustakaan sekolah punya 3.456 buku. Pilih <b>2</b> uraian bilangan yang benar!",["3.000 + 400 + 50 + 6","3.000 + 40 + 50 + 6","2.000 + 1.400 + 56","3.000 + 450 + 60"],[0,2],"📚"),
+M("Pak Ahmad menyirami kebun setiap 3 hari sekali, mulai hari ke-3. Pilih <b>3</b> hari saat ia menyiram!",["Hari ke-9","Hari ke-12","Hari ke-14","Hari ke-18","Hari ke-20"],[0,1,3],"🌱"),
+M("Ibu membeli 3 pita sama panjang. Sari memakai 1/2 bagian, Tika 2/4 bagian, Umi 2/3 bagian. Pilih <b>2</b> pernyataan benar!",["Pecahan pita yang dipakai Sari dan Tika senilai","Pita yang dipakai Umi senilai dengan 1/2 bagian","2/4 senilai dengan 3/6","1/2 senilai dengan 1/4"],[0,2],"🎀"),
+M("Pola bilangan: 8 → 14 → 20 → 26 → …<br>Pilih <b>2</b> pernyataan yang benar!",["Aturan pola: ditambah 6","Bilangan berikutnya 31","Bilangan berikutnya 32","Aturan pola: ditambah 8"],[0,2],"🎯"),
+F("Bilangan <b>9.205</b> dibaca …",[["",["sembilanribuduaratuslima"]]],"📣"),
+F("Pada bilangan <b>6.842</b>, angka 8 menempati nilai tempat … (puluhan, ratusan, atau ribuan?)",[["",["ratusan"]]],"🔟"),
+F("900 − 457 = …",[["",["443"]]],"➖"),
+F("9 × 6 = …",[["",["54"]]],"✖️"),
+F("72 : 8 = …",[["",["9"]]],"➗"),
+F("Tulis lima kelipatan 7 yang pertama (pisahkan dengan koma)!",[["",["7,14,21,28,35"]]],"🎲"),
+F("Isi dengan tanda &gt; atau &lt;:<br><b>1/5 … 1/3</b>",[["",["<"]]],"🍰"),
+F("Urutkan 1/6, 1/2, 1/8, 1/4 dari yang <b>terbesar</b> (pisahkan dengan koma)!",[["",["1/2,1/4,1/6,1/8"]]],"🥧"),
+F("Pita Ani 5/9 m, Budi 2/9 m, Citra 8/9 m, Dewi 4/9 m. Urutkan dari yang <b>terpendek</b> (tulis pecahannya, pisahkan koma)!",[["",["2/9,4/9,5/9,8/9","budi,dewi,ani,citra"]]],"📏"),
+F("Rani punya Rp50.000. Setelah membeli buku, uangnya sisa Rp35.000. Harga buku = ☐. Tulis kalimat matematikanya!",[["",["50000-?=35000"],1]],"💰"),
+F("Perpustakaan punya <b>dua ribu lima ratus sembilan</b> buku cerita dan <b>dua ribu sembilan puluh lima</b> buku pelajaran. Tulis dengan angka, lalu jawab!",[["Buku cerita:",["2509"]],["Buku pelajaran:",["2095"]],["Jenis buku yang lebih banyak:",["cerita"]]],"🏫"),
+F("Ayah memanen 45 mangga pagi hari dan beberapa mangga siang hari. Seluruhnya 80 mangga.",[["Kalimat matematika (pakai ☐):",["45+?=80"],1],["Nilai ☐:",["35"]]],"🥭"),
+F("Ubah ke pecahan desimal!",[["a. 3/10",["0,3"]],["b. 45/100",["0,45"]],["c. 7/100",["0,07"]]],"🧮"),
+F("Kebun Pak Tani ada 100 petak: 35 petak cabai, 40 petak tomat, sisanya bayam. Berapa persen tiap tanaman?",[["Cabai (%):",["35"]],["Tomat (%):",["40"]],["Bayam (%):",["25"]]],"🥕"),
+F("Hari pertama Pak Tani menanam 5 pohon. Hari berikutnya ia menanam 4 pohon lebih banyak dari hari sebelumnya.",[["Pola hari ke-1 sampai ke-5 (pisah koma):",["5,9,13,17,21"]],["Aturan: setiap hari ditambah …",["4","ditambah4"]],["Pohon pada hari ke-6:",["25"]]],"🌳")
+];
+const S=[[10,"A. Pilihan Ganda","Pilih satu jawaban yang benar!"],[15,"B. Benar atau Salah","Pernyataannya benar atau salah ya?"],[20,"C. Menjodohkan","Pilih pasangan yang paling tepat!"],[25,"D. Pilihan Ganda Kompleks","Jawaban benar lebih dari satu. Pilih semua, lalu tekan Cek!"],[35,"E. Isian Singkat","Ketik jawabanmu di kotak!"],[40,"F. Uraian","Isi semua kotak dengan teliti ya!"]];
+const G=["Hebat! Jawabanmu benar!","Wow, keren sekali! Kamu pintar!","Luar biasa! Pertahankan ya!","Bagus sekali! Kamu hebat!"],
+W=["Tidak apa-apa, ayo semangat! Kamu pasti bisa!","Jangan menyerah ya, kita belajar lagi!","Hampir benar! Ayo semangat, soal berikutnya pasti bisa!","Salah itu wajar. Terus semangat ya!"];
+const $=s=>document.querySelector(s),R=a=>a[Math.floor(Math.random()*a.length)];
+let i=0,sc=0,snd=true,nm="",ac,done=false,sel=[];
+function tone(f,t,d){const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.2,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+d)}
+function sfx(ok){if(!snd)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();(ok?[523,659,784,1047]:[392,349]).forEach((f,k)=>tone(f,ac.currentTime+k*.12,.3))}catch(e){}}
+function say(t){if(!snd)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='id-ID';u.rate=1;u.pitch=1.25;const v=speechSynthesis.getVoices().find(x=>x.lang.toLowerCase().startsWith('id'));if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){}}
+const nmx=t=>t.replace('!',nm?', '+nm+'!':'!');
+function burst(){const e=['⭐','🎉','✨','💖','🌟'];for(let k=0;k<26;k++){const s=document.createElement('span');s.className='cf';s.textContent=R(e);s.style.left=Math.random()*96+'%';s.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2600)}}
+function tg(){snd=!snd;if(!snd)try{speechSynthesis.cancel()}catch(e){}$('.sn').textContent=snd?'🔊':'🔇'}
+function start(){i=0;sc=0;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();speechSynthesis.getVoices()}catch(e){}
+nm=($('#nm')?$('#nm').value.trim():nm);show()}
+function home(){$('#app').innerHTML=`<div class="card c"><div class=big>🦉</div><h1 style="margin:4px 0">Petualangan Matematika</h1><p class=q>Halo, teman-teman kelas IV! Aku <b>Hoo</b>. Yuk, jawab 40 soal seru bersamaku. Jawaban benar dapat bintang ⭐, jawaban salah dapat semangat 💪</p><input class=in id=nm placeholder="Tulis namamu dulu ya…" maxlength=20><button class=go onclick=start()>Mulai Petualangan 🚀</button></div>`}
+function show(){done=false;sel=[];const q=Q[i],s=S.find(x=>i<x[0]);
+let o='';
+if(q.t=='f')o=q.f.map((f,k)=>(f[0]?`<div>${f[0]}</div>`:'')+`<input class=in id=f${k} autocomplete=off>`).join('');
+else{const L=q.t=='b'?['Salah ❌','Benar ✅']:q.o;o=L.map((x,k)=>`<button class=o onclick=pk(${k})>${q.t=='b'?'':'ABCDE'[k]+'. '}${x}</button>`).join('')}
+$('#app').innerHTML=`<div class=top><span>📘 ${i+1}/40</span><div class=bar><i style="width:${i/40*100}%"></i></div><span id=sc>⭐ ${sc}</span><button class=sn onclick=tg()>${snd?'🔊':'🔇'}</button></div><div class=card><span class=tag>${s[1]}</span><div class=em>${q.e}</div><p class=q>${q.q}</p><small>${s[2]}</small><div class=opts id=ao>${o}</div>${q.t=='m'||q.t=='f'?'<button class=go id=ck onclick=ck()>Cek Jawaban ✔️</button>':''}</div>`;
+window.scrollTo(0,0)}
+function pk(k){if(done)return;const q=Q[i];if(q.t=='m'){sel=sel.includes(k)?sel.filter(x=>x!=k):[...sel,k];document.querySelectorAll('.o').forEach((b,n)=>b.classList.toggle('sel',sel.includes(n)));return}
+fin(k==(q.t=='b'?(q.a?1:0):q.a))}
+function n(s,l,x){s=String(s).toLowerCase().trim();if(l)s=s.replace(/[\s;>]+/g,',');s=s.replace(/\s+/g,'').replace(/%|rp/g,'');if(/^[<>]$/.test(s))return s;
+s=s.replace(/(\d)\.(\d{3})(?!\d)/g,'$1$2').replace(/(\d)\.(\d{1,2})(?!\d)/g,'$1,$2').replace(/[−–—]/g,'-').replace(/,+/g,',');if(x)s=s.replace(/[☐□_?xnab]+/g,'?');return s}
+function mt(v,f){const l=f[1].some(a=>a.includes(',')),s=n(v,l,f[2]);return f[1].some(a=>s===a||(isNaN(a)&&a.length>=5&&!/[,\/]/.test(a)&&s.includes(a)))}
+function ck(){const q=Q[i];if(done)return;let ok;
+if(q.t=='m'){if(!sel.length)return;ok=sel.length==q.a.length&&q.a.every(x=>sel.includes(x))}
+else{const e=q.f.findIndex((f,k)=>!$('#f'+k).value.trim());if(e>=0){const b=$('#f'+e);b.focus();b.style.borderColor='var(--no)';return}ok=q.f.every((f,k)=>mt($('#f'+k).value,f))}
+fin(ok)}
+function fin(ok){const q=Q[i];done=true;sc+=ok?1:0;$('#sc').textContent='⭐ '+sc;const c=$('#ck');if(c)c.remove();
+const bs=document.querySelectorAll('.o');
+if(q.t=='m')bs.forEach((b,k)=>{b.classList.remove('sel');if(q.a.includes(k))b.classList.add('ok');else if(sel.includes(k))b.classList.add('no')});
+else if(q.t!='f'){const a=q.t=='b'?(q.a?1:0):q.a;bs.forEach((b,k)=>{if(k==a)b.classList.add('ok')});if(!ok&&window._k!=null)bs[window._k]&&bs[window._k].classList.add('no')}
+document.querySelectorAll('.in').forEach(x=>x.disabled=true);
+let an=q.t=='b'?(q.a?'Benar':'Salah'):q.t=='m'?q.a.map(k=>q.o[k]).join(' dan '):q.t=='f'?q.f.map(f=>(f[0]?f[0]+' ':'')+f[1][0].replace('?','☐')).join(' | '):q.o[q.a];
+const m=nmx(R(ok?G:W));
+$('.card').insertAdjacentHTML('beforeend',`<div class="fb ${ok?'g':'b'}"><span class=m>${ok?'🦉🎉':'🦉💪'}</span><div><b>${m}</b>${ok?'':`<br>Jawaban yang benar: <b>${an}</b>`}</div></div><button class=go onclick=nx()>${i<39?'Lanjut ➜':'Lihat Hasil 🎁'}</button>`);
+sfx(ok);setTimeout(()=>say(m),450);if(ok)burst()}
+document.addEventListener('click',e=>{const b=e.target.closest('.o');if(b&&!done&&Q[i].t!='m'){window._k=[...document.querySelectorAll('.o')].indexOf(b)}},true);
+document.addEventListener('keydown',e=>{if(e.key=='Enter'){const c=$('#ck');if(c)c.click()}});
+function nx(){i++;i<40?show():end()}
+function end(){const p=Math.round(sc/40*100),st=p>=85?'🌟🌟🌟':p>=60?'🌟🌟':'🌟',t=p>=85?'Luar biasa! Kamu juara matematika!':p>=60?'Bagus! Sedikit lagi, kamu pasti bisa lebih hebat!':'Jangan sedih ya, ayo belajar lagi dan coba sekali lagi!';
+$('#app').innerHTML=`<div class="card c"><div class=big>🏆</div><h2>${nm?nm+', ':''}kamu sudah selesai!</h2><div style="font-size:42px">${st}</div><p class=q>Nilaimu <b>${p}</b><br>(${sc} dari 40 soal benar)</p><p>${t}</p><button class=go onclick=start()>Main Lagi 🔄</button></div>`;
+burst();sfx(1);setTimeout(()=>say(nmx(t)),500)}
+home();
+</script></body></html>
